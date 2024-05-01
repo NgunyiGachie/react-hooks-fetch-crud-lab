@@ -43,8 +43,8 @@ test("creates a new question when the form is submitted", async () => {
   fireEvent.change(screen.queryByLabelText(/Answer 2/), {
     target: { value: "Test Answer 2" },
   });
-  fireEvent.change(screen.queryByLabelText(/Correct Answer/), {
-    target: { value: "1" },
+  fireEvent.change(screen.queryByLabelText("Correct Answer:"), {
+    target: { value: "3" },
   });
 
   // submit form
@@ -82,13 +82,13 @@ test("updates the answer when the dropdown is changed", async () => {
 
   await screen.findByText(/lorem testum 2/g);
 
-  fireEvent.change(screen.queryAllByLabelText(/Correct Answer/)[0], {
+  fireEvent.change(screen.getAllByLabelText("Correct Answer:/")[0], {
     target: { value: "3" },
   });
 
-  expect(screen.queryAllByLabelText(/Correct Answer/)[0].value).toBe("3");
+  expect(screen.getAllByLabelText("Correct Answer:/")[0].value).toBe("3");
 
   rerender(<App />);
 
-  expect(screen.queryAllByLabelText(/Correct Answer/)[0].value).toBe("3");
+  expect(screen.getAllByLabelText("Correct Answer:/")[0].value).toBe("3");
 });
